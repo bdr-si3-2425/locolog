@@ -49,50 +49,28 @@ INSERT INTO Trains (idTrain, Type, Capacite, HeuresCumulees) VALUES
 (112, 'Intercites', 270, 1050);
 
 
-
 INSERT INTO Trajet (Ville1, Ville2) VALUES 
 ('Paris', 'Lyon'),
 ('Lyon', 'Marseille'),
-('Marseille', 'Bordeaux'),
-('Bordeaux', 'Paris'),
-('Paris', 'Marseille'),
-('Paris', 'Bordeaux'),
-('Paris', 'Nice'),
-('Paris', 'Toulouse'),
-('Paris', 'Lille'),
-('Lyon', 'Nice'),
-('Lyon', 'Toulouse'),
-('Lyon', 'Lille'),
 ('Marseille', 'Nice'),
 ('Marseille', 'Toulouse'),
-('Marseille', 'Lille'),
-('Bordeaux', 'Nice'),
 ('Bordeaux', 'Toulouse'),
+('Bordeaux', 'Marseille'),
 ('Bordeaux', 'Lille'),
 ('Nice', 'Toulouse'),
-('Nice', 'Lille'),
 ('Toulouse', 'Lille'),
 ('Strasbourg', 'Paris'),
 ('Strasbourg', 'Lyon'),
-('Strasbourg', 'Marseille'),
-('Strasbourg', 'Bordeaux'),
-('Strasbourg', 'Nice'),
-('Strasbourg', 'Toulouse'),
-('Strasbourg', 'Lille'),
+('Lyon', 'Toulouse'),
+('Lyon', 'Lille'),
 ('Nantes', 'Paris'),
 ('Nantes', 'Lyon'),
-('Nantes', 'Marseille'),
 ('Nantes', 'Bordeaux'),
-('Nantes', 'Nice'),
-('Nantes', 'Toulouse'),
-('Nantes', 'Lille'),
-('Montpellier', 'Paris'),
 ('Montpellier', 'Lyon'),
 ('Montpellier', 'Marseille'),
 ('Montpellier', 'Bordeaux'),
-('Montpellier', 'Nice'),
-('Montpellier', 'Toulouse'),
-('Montpellier', 'Lille');
+('Montpellier', 'Toulouse');
+
 
 INSERT INTO Effectue (idTrain, Ville1, Ville2) VALUES 
 (101, 'Paris', 'Lyon'),
