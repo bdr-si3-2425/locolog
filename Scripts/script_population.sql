@@ -1,4 +1,4 @@
-INSERT INTO Maintenance (nomM) VALUES *
+INSERT INTO Maintenance (nomM) VALUES 
 --Rien a signaler 
 ('R.A.S'),
 --Maintenances de Gares 
@@ -53,10 +53,9 @@ INSERT INTO Trains (idTrain, Type, Capacite, HeuresCumulees) VALUES
 INSERT INTO Trajet (Ville1, Ville2) VALUES 
 ('Paris', 'Lyon'), --TGV
 ('Lyon', 'Marseille'), --TGV
-('Marseille', 'Nice'), --TER
+('Nice', 'Marseille'), --TER
 ('Marseille', 'Montpellier'), --TER
-('Montpellier', 'Toulouse'), --Intercite
-('Bordeaux', 'Toulouse'), --Intercite
+('Toulouse','Bordeaux'), --Intercite
 ('Bordeaux', 'Marseille'), --Intercite
 ('Bordeaux', 'Lille'), --TGV
 ('Nice', 'Toulouse'), --TER
@@ -66,41 +65,35 @@ INSERT INTO Trajet (Ville1, Ville2) VALUES
 ('Lyon', 'Toulouse'), --Intercite
 ('Lyon', 'Lille'), --TGV
 ('Nantes', 'Paris'), --TGV
-('Nantes', 'Le Mans'), -- TGV
+('Nice', 'Lyon'), --TGV
+('Le Mans', 'Nantes'), -- TGV
 ('Le Mans', 'Lyon'), -- TGV 
 ('Nantes', 'Bordeaux'), --Intercite
 ('Montpellier', 'Lyon'), --TGV
 ('Montpellier', 'Bordeaux'), --Intercite
-('Montpellier', 'Toulouse'); --TER
+('Montpellier', 'Toulouse'),--TER
+('Dijon', 'Lille');--TER
 
 
 INSERT INTO Effectue (idTrain, Ville1, Ville2) VALUES 
 (101, 'Paris', 'Lyon'),
 (101, 'Lyon', 'Marseille'),
-(101, 'Marseille', 'Nice'),
+(101,  'Nice', 'Marseille'),
 (102, 'Lyon', 'Marseille'),
-(102, 'Marseille', 'Toulouse'),
-(103, 'Marseille', 'Bordeaux'),
-(103, 'Bordeaux', 'Nantes'),
 (104, 'Paris', 'Lyon'),
 (104, 'Lyon', 'Marseille'),
-(104, 'Marseille', 'Nice'),
+(104, 'Nice', 'Marseille'),
 (105, 'Le Mans', 'Nantes'),
 (105, 'Nantes', 'Bordeaux'),
-(105, 'Bordeaux', 'Toulouse'),
-(106, 'Paris', 'Nice'),
+(105, 'Toulouse','Bordeaux'),
 (106, 'Nice', 'Toulouse'),
-(107, 'Paris', 'Toulouse'),
 (107, 'Toulouse', 'Bordeaux'),
-(108, 'Paris', 'Lille'),
-(108, 'Lille', 'Strasbourg'),
-(109, 'Lyon', 'Nice'),
+(109, 'Nice', 'Lyon'),
 (109, 'Nice', 'Marseille'),
 (110, 'Lyon', 'Toulouse'),
 (110, 'Toulouse', 'Bordeaux'),
-(111, 'Lyon', 'Dijon'),
 (111, 'Dijon', 'Lille'),
-(112, 'Marseille', 'Nice'),
+(112, 'Nice', 'Marseille'),
 (112, 'Nice', 'Toulouse');
 
 
@@ -131,7 +124,7 @@ INSERT INTO Passe_par (idTrain, idGare) VALUES
 (108, 8), -- Train 108 passe par Gare de Lille-Flandres (Lille)
 (108, 9), -- Train 108 passe par Gare de Strasbourg (Strasbourg)
 (109, 2), -- Train 109 passe par Gare de Lyon (Lyon)
-(109, 6), -- Train 109 passe par Gare de
+(109, 6); -- Train 109 passe par Gare de Nice-Ville 
 
 
 INSERT INTO Lignes (idLigne, Gares_idGARE, Trains_idTrain) VALUES 
@@ -158,24 +151,15 @@ INSERT INTO Incidents (id_inci, idLigne, Type) VALUES
 (3, 3, '');
 
 
-INSERT INTO Retarde (id_inci, idTrain, idLigne, Heure, Decalage) VALUES 
+INSERT INTO Retarde (id_inci, idTrain, idLigne, Heure, Décalage) VALUES 
 (1, 101, 1, '08:00:00', '00:30:00'),
 (2, 102, 2, '10:30:00', '01:00:00'),
 (3, 103, 3, '15:00:00', '00:45:00');
-
-
-INSERT INTO Maintenance_de_Train (nomM, idTrain) VALUES 
---A remplir 
-
 
 INSERT INTO Maintenance_de_Gares (nomM, idGare) VALUES 
 ('Systeme_Drainage', 1),
 ('Panneaux_Affichage', 2),
 ('Quai_Endommage', 3);
-
-
-INSERT INTO Maintenance_de_Ligne (nomM, idLigne) VALUES 
---A remplir
 
 
 INSERT INTO Equipements (Nom, idGare, nombre) VALUES 
