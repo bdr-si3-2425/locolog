@@ -9,7 +9,7 @@ CREATE TABLE Trains (
     idTrain INT PRIMARY KEY,
     Type VARCHAR(255),
     Capacite INT,
-    HeuresCumulees INT
+    HeuresCumulees INT;
 );
 
 CREATE TABLE Lignes (
