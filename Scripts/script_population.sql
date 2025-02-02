@@ -31,7 +31,8 @@ INSERT INTO Gares (idGare, Localisation, Nom, Nb_quais) VALUES
 (8, 'Lille', 'Gare de Lille-Flandres', 10),
 (9, 'Strasbourg', 'Gare de Strasbourg', 13),
 (10, 'Nantes', 'Gare de Nantes', 15),
-(11, 'Montpellier', 'Gare de Montpellier-Saint-Roch', 9);
+(11, 'Montpellier', 'Gare de Montpellier-Saint-Roch', 9),
+(12, 'Le Mans', 'Gare du Mans', 8);
 
 
 INSERT INTO Trains (idTrain, Type, Capacite, HeuresCumulees) VALUES 
@@ -50,26 +51,27 @@ INSERT INTO Trains (idTrain, Type, Capacite, HeuresCumulees) VALUES
 
 
 INSERT INTO Trajet (Ville1, Ville2) VALUES 
-('Paris', 'Lyon'),
-('Lyon', 'Marseille'),
-('Marseille', 'Nice'),
-('Marseille', 'Toulouse'),
-('Bordeaux', 'Toulouse'),
-('Bordeaux', 'Marseille'),
-('Bordeaux', 'Lille'),
-('Nice', 'Toulouse'),
-('Toulouse', 'Lille'),
-('Strasbourg', 'Paris'),
-('Strasbourg', 'Lyon'),
-('Lyon', 'Toulouse'),
-('Lyon', 'Lille'),
-('Nantes', 'Paris'),
-('Nantes', 'Lyon'),
-('Nantes', 'Bordeaux'),
-('Montpellier', 'Lyon'),
-('Montpellier', 'Marseille'),
-('Montpellier', 'Bordeaux'),
-('Montpellier', 'Toulouse');
+('Paris', 'Lyon'), --TGV
+('Lyon', 'Marseille'), --TGV
+('Marseille', 'Nice'), --TER
+('Marseille', 'Montpellier'), --TER
+('Montpellier', 'Toulouse'), --Intercite
+('Bordeaux', 'Toulouse'), --Intercite
+('Bordeaux', 'Marseille'), --Intercite
+('Bordeaux', 'Lille'), --TGV
+('Nice', 'Toulouse'), --TER
+('Toulouse', 'Lille'), --TGV
+('Strasbourg', 'Paris'), --TGV
+('Strasbourg', 'Lyon'), --TGV
+('Lyon', 'Toulouse'), --Intercite
+('Lyon', 'Lille'), --TGV
+('Nantes', 'Paris'), --TGV
+('Nantes', 'Le Mans'), -- TGV
+('Le Mans', 'Lyon'), -- TGV 
+('Nantes', 'Bordeaux'), --Intercite
+('Montpellier', 'Lyon'), --TGV
+('Montpellier', 'Bordeaux'), --Intercite
+('Montpellier', 'Toulouse'); --TER
 
 
 INSERT INTO Effectue (idTrain, Ville1, Ville2) VALUES 
@@ -80,9 +82,11 @@ INSERT INTO Effectue (idTrain, Ville1, Ville2) VALUES
 (102, 'Marseille', 'Toulouse'),
 (103, 'Marseille', 'Bordeaux'),
 (103, 'Bordeaux', 'Nantes'),
-(104, 'Paris', 'Marseille'),
+(104, 'Paris', 'Lyon'),
+(104, 'Lyon', 'Marseille'),
 (104, 'Marseille', 'Nice'),
-(105, 'Paris', 'Bordeaux'),
+(105, 'Le Mans', 'Nantes'),
+(105, 'Nantes', 'Bordeaux'),
 (105, 'Bordeaux', 'Toulouse'),
 (106, 'Paris', 'Nice'),
 (106, 'Nice', 'Toulouse'),
@@ -94,10 +98,11 @@ INSERT INTO Effectue (idTrain, Ville1, Ville2) VALUES
 (109, 'Nice', 'Marseille'),
 (110, 'Lyon', 'Toulouse'),
 (110, 'Toulouse', 'Bordeaux'),
-(111, 'Lyon', 'Lille'),
-(111, 'Lille', 'Paris'),
+(111, 'Lyon', 'Dijon'),
+(111, 'Dijon', 'Lille'),
 (112, 'Marseille', 'Nice'),
 (112, 'Nice', 'Toulouse');
+
 
 INSERT INTO Passe_par (idTrain, idGare) VALUES 
 (101, 1), -- Train 101 passe par Gare du Nord (Paris)
