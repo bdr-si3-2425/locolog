@@ -478,7 +478,7 @@ INSERT INTO Maintenances_de_Gare (nomM, idGare, date, heure, duree) VALUES
 ('R.A.S', 1,'2000-01-01','00:00:00','00:00:00');
 
 DELETE FROM Maintenances_de_Ligne;
-INSERT INTO Maintenances_de_Ligne (nomM, idLigne, date, heure,idGareDebut, idGareArrivee, duree) VALUES
+INSERT INTO Maintenances_de_Ligne (nomM, idLigne, date, heure,idGareDepart, idGareArrivee, duree) VALUES
 ('R.A.S', 1,'2000-01-01','00:00:00', 1, 1,'00:00:00');
 
 
@@ -491,7 +491,7 @@ INSERT INTO Incidents_de_Gare (typeI, idGare, date, heure, duree) VALUES
 ('', 1,'2000-01-01','00:00:00','00:00:00');
 
 DELETE FROM Incidents_de_Ligne;
-INSERT INTO Incidents_de_Ligne (typeI, idLigne, date, heure, idGareDebut, idGareArrivee, duree) VALUES
+INSERT INTO Incidents_de_Ligne (typeI, idLigne, date, heure, idGareDepart, idGareArrivee, duree) VALUES
 ('', 1,'2000-01-01','00:00:00', 1, 1,'00:00:00');
 
 

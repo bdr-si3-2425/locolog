@@ -99,13 +99,13 @@ CREATE TABLE Maintenances_de_Ligne (
     idLigne INT,
     date DATE,
     heure TIME,
-    idGareDebut INT,
+    idGareDepart INT,
     idGareArrivee INT,
     duree INTERVAL,
-    PRIMARY KEY (nomM, idLigne, date, heure, idGareDebut, idGareArrivee),
+    PRIMARY KEY (nomM, idLigne, date, heure, idGareDepart, idGareArrivee),
     FOREIGN KEY (nomM) REFERENCES Maintenances(nomM) ON DELETE CASCADE,
     FOREIGN KEY (idLigne) REFERENCES Lignes(idLigne) ON DELETE CASCADE,
-    FOREIGN KEY (idGareDebut) REFERENCES Gares(idGare) ON DELETE CASCADE,
+    FOREIGN KEY (idGareDepart) REFERENCES Gares(idGare) ON DELETE CASCADE,
     FOREIGN KEY (idGareArrivee) REFERENCES Gares(idGare) ON DELETE CASCADE
 );
 
@@ -141,12 +141,12 @@ CREATE TABLE Incidents_de_Ligne (
     idLigne INT,
     date DATE,
     heure TIME,
-    idGareDebut INT,
+    idGareDepart INT,
     idGareArrivee INT,
     duree INTERVAL,
-    PRIMARY KEY (typeI, idLigne, date, heure, idGareDebut, idGareArrivee),
+    PRIMARY KEY (typeI, idLigne, date, heure, idGareDepart, idGareArrivee),
     FOREIGN KEY (typeI) REFERENCES Incidents(typeI) ON DELETE CASCADE,
     FOREIGN KEY (idLigne) REFERENCES Lignes(idLigne) ON DELETE CASCADE,
-    FOREIGN KEY (idGareDebut) REFERENCES Gares(idGare) ON DELETE CASCADE,
+    FOREIGN KEY (idGareDepart) REFERENCES Gares(idGare) ON DELETE CASCADE,
     FOREIGN KEY (idGareArrivee) REFERENCES Gares(idGare) ON DELETE CASCADE
 );
