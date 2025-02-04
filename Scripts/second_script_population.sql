@@ -1,6 +1,6 @@
 -- ATTENTION : A CHAQUE EXECUTION, TOUTES LES DONNEES DISPARAITRONT
 DELETE FROM Trains;
-INSERT INTO Trains (idTrain, type, capacite, heuresCumulees) VALUES 
+INSERT INTO Trains (idTrain, typeT, capacite, heuresCumulees) VALUES 
 (101, 'TGV', 300, 1200),
 (102, 'TER', 200, 800),
 (103, 'Intercites', 250, 1000),

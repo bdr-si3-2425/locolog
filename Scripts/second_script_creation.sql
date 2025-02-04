@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Trains CASCADE;
 CREATE TABLE Trains (
     idTrain INT PRIMARY KEY,
-    type VARCHAR(255),
+    typeT VARCHAR(255),
     capacite INT,
     heuresCumulees INT
 );
