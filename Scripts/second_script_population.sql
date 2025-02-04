@@ -15,7 +15,7 @@ INSERT INTO Trains (idTrain, type, capacite, heuresCumulees) VALUES
 (112, 'Intercites', 270, 1050);
 
 DELETE FROM Gares;
-INSERT INTO Gares (idGare, localisation, nom, nbQuais) VALUES 
+INSERT INTO Gares (idGare, localisation, nomG, nbQuais) VALUES 
 (1, 'Paris', 'Gare du Nord', 15),
 (2, 'Paris', 'Gare de Lyon', 13),
 (3, 'Marseille', 'Gare Saint-Charles', 9),
@@ -37,7 +37,7 @@ INSERT INTO Lignes (idLigne) VALUES
 (3);
 
 DELETE FROM Maintenances;
-INSERT INTO Maintenances (nom) VALUES 
+INSERT INTO Maintenances (nomM) VALUES 
 --Rien a signaler 
 ('R.A.S'),
 --Maintenances de Gares 
@@ -60,7 +60,7 @@ INSERT INTO Maintenances (nom) VALUES
 
 -- A REVOIR
 DELETE FROM Trajets;
-INSERT INTO Trajets (train, depart, arrivee, date, heure, duree) VALUES
+INSERT INTO Trajets (idTrain, idGareDepart, idGareArrivee, date, heure, duree) VALUES
 (101, 1, 5, DATE '2025-01-01', '07:40:00', '01:45:00'), --TGV
 (101, 1, 5, DATE '2025-01-01', '11:40:00', '01:45:00'), --TGV
 (101, 1, 5, DATE '2025-01-01', '15:40:00', '01:45:00'), --TGV
@@ -345,7 +345,7 @@ INSERT INTO Trajets (train, depart, arrivee, date, heure, duree) VALUES
 ('Montpellier', 'Toulouse'),--TER*/
 
 DELETE FROM Equipements;
-INSERT INTO Equipements (Nom) VALUES 
+INSERT INTO Equipements (NomE) VALUES 
 ('Escalators'), -- Gare du Nord (Paris)
 ('Bornes Billets'),
 ('Ascenseurs'),
@@ -356,7 +356,7 @@ INSERT INTO Equipements (Nom) VALUES
 ('Chariot de menage');
 
 DELETE FROM Incidents;
-INSERT INTO Incidents (type) VALUES 
+INSERT INTO Incidents (typeI) VALUES 
 ('Affaissement'),
 ('Deraillement partiel'),
 ('');
@@ -368,7 +368,7 @@ INSERT INTO Dessert (idGare, idLigne) VALUES
 (3, 3);
 
 DELETE FROM Est_equipee;
-INSERT INTO Est_equipee (idGare, nomEquipement, quantite) VALUES 
+INSERT INTO Est_equipee (idGare, nomE, quantite) VALUES 
 (1, 'Escalators', 5), -- Gare du Nord (Paris)
 (1, 'Bornes Billets', 20),
 (1, 'Ascenseurs', 10),
@@ -470,28 +470,28 @@ INSERT INTO Est_equipee (idGare, nomEquipement, quantite) VALUES
 
 -- A FAIRE
 DELETE FROM Maintenances_de_Train;
-INSERT INTO Maintenances_de_Train (nom, idTrain, date, heure, duree) VALUES 
+INSERT INTO Maintenances_de_Train (nomM, idTrain, date, heure, duree) VALUES 
 ('R.A.S', 101,'2000-01-01','00:00:00','00:00:00');
 
 DELETE FROM Maintenances_de_Gare;
-INSERT INTO Maintenances_de_Gare (nom, idGare, date, heure, duree) VALUES
+INSERT INTO Maintenances_de_Gare (nomM, idGare, date, heure, duree) VALUES
 ('R.A.S', 1,'2000-01-01','00:00:00','00:00:00');
 
 DELETE FROM Maintenances_de_Ligne;
-INSERT INTO Maintenances_de_Ligne (nom, idLigne, date, heure, gareDebut, gareFin, duree) VALUES
+INSERT INTO Maintenances_de_Ligne (nomM, idLigne, date, heure,idGareDebut, idGareArrivee, duree) VALUES
 ('R.A.S', 1,'2000-01-01','00:00:00', 1, 1,'00:00:00');
 
 
 DELETE FROM Incidents_de_Train;
-INSERT INTO Incidents_de_Train (type, idTrain, date, heure, duree) VALUES
+INSERT INTO Incidents_de_Train (typeI, idTrain, date, heure, duree) VALUES
 ('', 101,'2000-01-01','00:00:00','00:00:00');
 
 DELETE FROM Incidents_de_Gare;
-INSERT INTO Incidents_de_Gare (type, idGare, date, heure, duree) VALUES
+INSERT INTO Incidents_de_Gare (typeI, idGare, date, heure, duree) VALUES
 ('', 1,'2000-01-01','00:00:00','00:00:00');
 
 DELETE FROM Incidents_de_Ligne;
-INSERT INTO Incidents_de_Ligne (type, idLigne, date, heure, gareDebut, gareFin, duree) VALUES
+INSERT INTO Incidents_de_Ligne (typeI, idLigne, date, heure, idGareDebut, idGareArrivee, duree) VALUES
 ('', 1,'2000-01-01','00:00:00', 1, 1,'00:00:00');
 
 
