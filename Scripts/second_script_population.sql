@@ -592,6 +592,6 @@ INSERT INTO Incidents_de_Gare (typeI, idGare, date, heure, duree) VALUES
 
 DELETE FROM Incidents_de_Ligne;
 INSERT INTO Incidents_de_Ligne (typeI, idLigne, date, heure, idGareDepart, idGareArrivee, duree) VALUES
-('', 4,'2025-01-01','11:30:00', 7, 10,'02:00:00');
+('', 4,'2025-01-02','11:30:00', 7, 10,'02:00:00');
 
 

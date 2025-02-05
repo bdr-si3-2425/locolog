@@ -32,15 +32,16 @@ RETURNS TABLE(idGareDepartTrajet integer, idGareArriveeTrajet integer, dateT dat
 			(date + heure) <= (dateInci + heureInci + duree);'
 	LANGUAGE SQL;
 
-WITH RECURSIVE CheminsDisponibles(gareDepart, garesIntermediaires, gareArrivee, horaireDepart, horaireArrivee, distance) AS (
+WITH RECURSIVE CheminsSansIncidentsDisponibles(gareDepart, garesIntermediaires, gareArrivee, horaireDepart, horaireArrivee, distance) AS (
 	SELECT idGareDepart AS gareDepart, ARRAY[]::integer[] AS garesIntermediaires, idGareArrivee AS gareArrivee, (date + heure) AS horaireDepart, (date + heure + duree) AS horaireArrivee, 0 FROM Trajets
-	WHERE NOT (ROW(idGareDepart,idGareArrivee,date,heure) IN (SELECT DISTINCT idGareDepartTrajet(trajetsImpactesParIncidents(idLigne, idGareDepart, idGareArrivee, date, heure, duree)), 
+	WHERE (date + heure) >= (DATE '2025-01-02' + TIME '06:00:00') and -- A remplacer par CURRENT_DATE + CURRENT_TIME dans un projet plus complet, ici juste pour test
+		NOT (ROW(idGareDepart,idGareArrivee,date,heure) IN (SELECT DISTINCT idGareDepartTrajet(trajetsImpactesParIncidents(idLigne, idGareDepart, idGareArrivee, date, heure, duree)), 
 																						idGareArriveeTrajet(trajetsImpactesParIncidents(idLigne, idGareDepart, idGareArrivee, date, heure, duree)), 
 																						dateT(trajetsImpactesParIncidents(idLigne, idGareDepart, idGareArrivee, date, heure, duree)), 
 																						heureT(trajetsImpactesParIncidents(idLigne, idGareDepart, idGareArrivee, date, heure, duree)) FROM Incidents_de_Ligne))
 	UNION
-	SELECT gareDepart, garesIntermediaires || idGareDepart, idGareArrivee AS gareArrivee, horaireDepart, (date + heure + duree) AS horaireArrivee, distance +1 FROM CheminsDisponibles 
-	JOIN Trajets ON CheminsDisponibles.gareArrivee = idGareDepart
+	SELECT gareDepart, garesIntermediaires || idGareDepart, idGareArrivee AS gareArrivee, horaireDepart, (date + heure + duree) AS horaireArrivee, distance +1 FROM CheminsSansIncidentsDisponibles 
+	JOIN Trajets ON CheminsSansIncidentsDisponibles.gareArrivee = idGareDepart
 	WHERE gareDepart <> idGareArrivee and 
 			NOT (idGareArrivee = ANY(garesIntermediaires)) and 
 			horaireDepart < (date + heure + duree) and
@@ -50,6 +51,13 @@ WITH RECURSIVE CheminsDisponibles(gareDepart, garesIntermediaires, gareArrivee, 
 																						heureT(trajetsImpactesParIncidents(idLigne, idGareDepart, idGareArrivee, date, heure, duree)) FROM Incidents_de_Ligne))
 )
 
-SELECT gareDepart, garesIntermediaires, gareArrivee, horaireDepart, MIN(horaireArrivee), distance FROM CheminsDisponibles
-GROUP BY (distance, gareDepart, garesIntermediaires, gareArrivee, horaireDepart)
-ORDER BY distance, gareDepart, gareArrivee, horaireDepart;
+SELECT GD.nomG, 
+	(SELECT array_agg(GI.nomG) FROM (SELECT unnest(garesIntermediaires)) AS gInter JOIN GARES GI ON GI.idGare = gInter.unnest) AS garesInter, 
+	GA.nomG, 
+	horaireDepart, 
+	MIN(horaireArrivee), 
+	distance FROM CheminsSansIncidentsDisponibles CSID
+JOIN Gares GD ON CSID.gareDepart = GD.idGare
+JOIN Gares GA ON CSID.gareArrivee = GA.idGare
+GROUP BY (distance, GD.nomG, garesInter, GA.nomG, horaireDepart)
+ORDER BY distance, GD.nomG, GA.nomG, horaireDepart;
