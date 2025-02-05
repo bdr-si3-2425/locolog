@@ -1,8 +1,8 @@
 SELECT 
     gare.idGare AS id_gare, 
     COUNT(*) AS nombre_trains,
-    g.nbQuais * 3 * 4 AS capacite_max, 
-    (COUNT(*) * 100.0 / (g.nbQuais * 3 * 4)) AS taux_saturation
+    g.nbQuais * 4 * 4 AS capacite_max, 
+    (COUNT(*) * 100.0 / (g.nbQuais * 4 * 4)) AS taux_saturation
 FROM (
     SELECT idGareDepart AS idGare, heure FROM Trajets
     WHERE (EXTRACT(HOUR FROM heure) BETWEEN 7 AND 9) OR (EXTRACT(HOUR FROM heure) BETWEEN 17 AND 19)
