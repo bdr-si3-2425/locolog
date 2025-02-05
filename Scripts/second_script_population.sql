@@ -18,7 +18,8 @@ INSERT INTO Trains (idTrain, typeT, capacite, heuresCumulees) VALUES
 (115,'TGV',320,550),
 (116,'TGV',320,550),
 (117,'TGV',320,350),
-(118, 'Intercites', 250, 9000);
+(118, 'Intercites', 250, 9000),
+(119, 'Intercites', 250, 500);
 DELETE FROM Gares;
 INSERT INTO Gares (idGare, localisation, nomG, nbQuais) VALUES 
 (1, 'Paris', 'Gare du Nord', 6),
@@ -571,7 +572,9 @@ INSERT INTO Est_equipee (idGare, nomE, quantite) VALUES
 -- A FAIRE
 DELETE FROM Maintenances_de_Train;
 INSERT INTO Maintenances_de_Train (nomM, idTrain, date, heure, duree) VALUES 
-('R.A.S', 101,'2000-01-01','00:00:00','00:00:00');
+('R.A.S', 101,'2000-01-01','00:00:00','00:00:00'),
+('Portes_Automatiques', 117,'2000-02-05','10:30:00','08:0:00'),
+('Portes_Automatiques', 118,'2000-02-01','10:30:00','08:0:00');
 
 DELETE FROM Maintenances_de_Gare;
 INSERT INTO Maintenances_de_Gare (nomM, idGare, date, heure, duree) VALUES
@@ -584,7 +587,9 @@ INSERT INTO Maintenances_de_Ligne (nomM, idLigne, date, heure,idGareDepart, idGa
 
 DELETE FROM Incidents_de_Train;
 INSERT INTO Incidents_de_Train (typeI, idTrain, date, heure, duree) VALUES
-('', 101,'2000-01-01','00:00:00','00:00:00');
+('', 101,'2000-01-01','00:00:00','00:00:00'),
+('', 119,'2000-01-01','09:45:00','03:00:00');
+
 
 DELETE FROM Incidents_de_Gare;
 INSERT INTO Incidents_de_Gare (typeI, idGare, date, heure, duree) VALUES
